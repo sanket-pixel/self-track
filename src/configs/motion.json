@@ -1,0 +1,34 @@
+{
+  "DataLoader": {
+    "training_data_path": "data/motion_model/psuedo_gt/train/seq_30/batches.txt",
+    "validation_data_path": "",
+    "MOT_folder": "data/MOT17/train/",
+    "use_warp" : false,
+    "vel_only" : false,
+    "warp_path": "data/motion_model/warp_matrix/MOT17/"
+  },
+  "Model": {
+    "arch": "lstm",
+    "nhead": 8,
+    "feature_size": 64,
+    "num_layers": 1,
+    "bbox_dim": 8,
+    "warp_dim": 6,
+    "N": 30,
+    "dropout":0.1,
+    "layer_norm_eps": 1e-5
+  },
+  "Training": {
+    "batch_size": 256,
+    "num_workers": 8,
+    "epochs": 500,
+    "learning_rate": 0.01,
+    "init_epoch": 0,
+    "resume": false,
+    "cp_path": "",
+    "path_to_best": "best_model.pth",
+    "val_frequency": 1,
+    "model_dir_name": "test",
+    "experiment_name": "lstm_degub"
+  }
+}

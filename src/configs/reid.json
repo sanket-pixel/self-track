@@ -1,0 +1,36 @@
+{
+  "DataLoader": {
+    "training_data_path": "data/reid_model/psuedo_gt/train/MOT17_tracklet_training_refined.csv",
+    "validation_data_path": "data/reid_model/psuedo_gt/validation/MOT20_selected_validation_data.csv",
+    "MOT_folder": "data/MOT17/train/",
+    "det_conf_filter" : 0.9
+  },
+    "MetricLearning":{
+    "distance": {"name": "LpDistance", "params": {"normalize_embeddings": true, "p": 2, "power": 1}},
+    "loss": {"name": "TripletMarginLoss", "params": {"margin": 0.05, "swap":false,
+                        "smooth_loss":false,
+                        "triplets_per_anchor":"all"}
+    },
+    "miner": {"name": "BatchEasyHardMiner", "params": {"pos_strategy":"BatchEasyHardMiner.HARD",  "neg_strategy":"BatchEasyHardMiner.HARD"}},
+     "reducer": {"name": "AvgNonZeroReducer", "params": {}},
+     "sampler": {"name": "MPerClassSampler","params": {"m": 10, "batch_size": 100, "length_before_new_iter": 100000
+     }}
+  },
+  "Training": {
+    "batch_size": 100,
+    "num_workers": 12,
+    "epochs": 51,
+    "learning_rate": 0.0003,
+    "embedding_dim": 2048,
+    "projection_dim": 128,
+    "init_epoch": 0,
+    "resume": false,
+    "t_img_h" : 224,
+    "t_img_w" : 224,
+    "cp_path": "",
+    "path_to_best": "best_model.pth",
+    "val_frequency": 25,
+    "model_dir_name": "Re-Identification",
+    "experiment_name": "det_conf_conpare/0_9"
+  }
+}
